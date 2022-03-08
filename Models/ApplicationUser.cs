@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace recipeApp.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
