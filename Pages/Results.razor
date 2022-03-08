@@ -1,12 +1,22 @@
-@page "/results"
+@page "/results/:ingredient"
 
-<PageTitle>Results Page</PageTitle>
+<PageTitle>Result Page</PageTitle>
 
 @using recipeApp.Data
 
 <h1>Results Page</h1>
 
+<p>Here are some randome recipes with your ingredient</p>
+
+
 
 @code {
-  
+    Recipe[]? recipes;
+
+      protected async Task load()
+    {
+        
+        recipes = await httpClient.GetFromJsonAsync<Recipe[]>($"{GlobalVariable.BaseUrl}findByIngredients?apiKey=2d565ece4cab48459669cb81a708e639&ingredients=chicken");
+
+    }
 }
