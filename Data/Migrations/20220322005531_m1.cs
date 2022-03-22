@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace recipeApp.Data.Migrations
+namespace RecipeApp.Data.Migrations
 {
-    public partial class M1 : Migration
+    public partial class m1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,12 +28,9 @@ namespace recipeApp.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
                     PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
@@ -49,19 +46,6 @@ namespace recipeApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DayPlan",
-                columns: table => new
-                {
-                    DayPlanId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CalorieCount = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DayPlan", x => x.DayPlanId);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,85 +154,6 @@ namespace recipeApp.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Recipe",
-                columns: table => new
-                {
-                    RecipeId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: true),
-                    ImageURL = table.Column<string>(type: "TEXT", nullable: true),
-                    Ingredients = table.Column<string>(type: "TEXT", nullable: true),
-                    Instructions = table.Column<string>(type: "TEXT", nullable: true),
-                    Nutrition = table.Column<string>(type: "TEXT", nullable: true),
-                    IsFavourite = table.Column<bool>(type: "INTEGER", nullable: true),
-                    DayPlanId = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Recipe", x => x.RecipeId);
-                    table.ForeignKey(
-                        name: "FK_Recipe_DayPlan_DayPlanId",
-                        column: x => x.DayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WeekPlan",
-                columns: table => new
-                {
-                    WeekPlanId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    MondayDayPlanId = table.Column<int>(type: "INTEGER", nullable: true),
-                    TuesdayDayPlanId = table.Column<int>(type: "INTEGER", nullable: true),
-                    WednesdayDayPlanId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ThursdayDayPlanId = table.Column<int>(type: "INTEGER", nullable: true),
-                    FridayDayPlanId = table.Column<int>(type: "INTEGER", nullable: true),
-                    SaturdayDayPlanId = table.Column<int>(type: "INTEGER", nullable: true),
-                    SundayDayPlanId = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WeekPlan", x => x.WeekPlanId);
-                    table.ForeignKey(
-                        name: "FK_WeekPlan_DayPlan_FridayDayPlanId",
-                        column: x => x.FridayDayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                    table.ForeignKey(
-                        name: "FK_WeekPlan_DayPlan_MondayDayPlanId",
-                        column: x => x.MondayDayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                    table.ForeignKey(
-                        name: "FK_WeekPlan_DayPlan_SaturdayDayPlanId",
-                        column: x => x.SaturdayDayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                    table.ForeignKey(
-                        name: "FK_WeekPlan_DayPlan_SundayDayPlanId",
-                        column: x => x.SundayDayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                    table.ForeignKey(
-                        name: "FK_WeekPlan_DayPlan_ThursdayDayPlanId",
-                        column: x => x.ThursdayDayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                    table.ForeignKey(
-                        name: "FK_WeekPlan_DayPlan_TuesdayDayPlanId",
-                        column: x => x.TuesdayDayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                    table.ForeignKey(
-                        name: "FK_WeekPlan_DayPlan_WednesdayDayPlanId",
-                        column: x => x.WednesdayDayPlanId,
-                        principalTable: "DayPlan",
-                        principalColumn: "DayPlanId");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -285,46 +190,6 @@ namespace recipeApp.Data.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Recipe_DayPlanId",
-                table: "Recipe",
-                column: "DayPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WeekPlan_FridayDayPlanId",
-                table: "WeekPlan",
-                column: "FridayDayPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WeekPlan_MondayDayPlanId",
-                table: "WeekPlan",
-                column: "MondayDayPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WeekPlan_SaturdayDayPlanId",
-                table: "WeekPlan",
-                column: "SaturdayDayPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WeekPlan_SundayDayPlanId",
-                table: "WeekPlan",
-                column: "SundayDayPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WeekPlan_ThursdayDayPlanId",
-                table: "WeekPlan",
-                column: "ThursdayDayPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WeekPlan_TuesdayDayPlanId",
-                table: "WeekPlan",
-                column: "TuesdayDayPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WeekPlan_WednesdayDayPlanId",
-                table: "WeekPlan",
-                column: "WednesdayDayPlanId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -345,19 +210,10 @@ namespace recipeApp.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Recipe");
-
-            migrationBuilder.DropTable(
-                name: "WeekPlan");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "DayPlan");
         }
     }
 }

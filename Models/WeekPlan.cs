@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace recipeApp.Models
+namespace RecipeApp.Models
 {
     public class WeekPlan
     {

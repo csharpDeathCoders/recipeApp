@@ -1,4 +1,4 @@
-namespace recipeApp.Models
+namespace RecipeApp.Models
 {
     public class DayPlan
     {

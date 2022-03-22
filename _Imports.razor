@@ -6,6 +6,9 @@
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
-@using recipeApp
-@using recipeApp.Shared
-@using recipeApp.Models
+@using RecipeApp
+@using RecipeApp.Shared
+@inject HttpClient httpClient
+@inject NavigationManager NavManager
+@using RecipeApp.Models
+@using RecipeApp.Data

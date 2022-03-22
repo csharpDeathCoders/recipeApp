@@ -3,11 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using recipeApp.Data;
+using RecipeApp.Data;
 
 #nullable disable
 
-namespace recipeApp.Data.Migrations
+namespace RecipeApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -64,6 +64,70 @@ namespace recipeApp.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -149,180 +213,6 @@ namespace recipeApp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("recipeApp.Models.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("recipeApp.Models.DayPlan", b =>
-                {
-                    b.Property<int>("DayPlanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("CalorieCount")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DayPlanId");
-
-                    b.ToTable("DayPlan");
-                });
-
-            modelBuilder.Entity("recipeApp.Models.Recipe", b =>
-                {
-                    b.Property<int>("RecipeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("DayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ImageURL")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Ingredients")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Instructions")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool?>("IsFavourite")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Nutrition")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("RecipeId");
-
-                    b.HasIndex("DayPlanId");
-
-                    b.ToTable("Recipe");
-                });
-
-            modelBuilder.Entity("recipeApp.Models.WeekPlan", b =>
-                {
-                    b.Property<int>("WeekPlanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("FridayDayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("MondayDayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("SaturdayDayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("SundayDayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ThursdayDayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("TuesdayDayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("WednesdayDayPlanId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("WeekPlanId");
-
-                    b.HasIndex("FridayDayPlanId");
-
-                    b.HasIndex("MondayDayPlanId");
-
-                    b.HasIndex("SaturdayDayPlanId");
-
-                    b.HasIndex("SundayDayPlanId");
-
-                    b.HasIndex("ThursdayDayPlanId");
-
-                    b.HasIndex("TuesdayDayPlanId");
-
-                    b.HasIndex("WednesdayDayPlanId");
-
-                    b.ToTable("WeekPlan");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -334,7 +224,7 @@ namespace recipeApp.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("recipeApp.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -343,7 +233,7 @@ namespace recipeApp.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("recipeApp.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -358,7 +248,7 @@ namespace recipeApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("recipeApp.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -367,68 +257,11 @@ namespace recipeApp.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("recipeApp.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("recipeApp.Models.Recipe", b =>
-                {
-                    b.HasOne("recipeApp.Models.DayPlan", null)
-                        .WithMany("Recipe")
-                        .HasForeignKey("DayPlanId");
-                });
-
-            modelBuilder.Entity("recipeApp.Models.WeekPlan", b =>
-                {
-                    b.HasOne("recipeApp.Models.DayPlan", "Friday")
-                        .WithMany()
-                        .HasForeignKey("FridayDayPlanId");
-
-                    b.HasOne("recipeApp.Models.DayPlan", "Monday")
-                        .WithMany()
-                        .HasForeignKey("MondayDayPlanId");
-
-                    b.HasOne("recipeApp.Models.DayPlan", "Saturday")
-                        .WithMany()
-                        .HasForeignKey("SaturdayDayPlanId");
-
-                    b.HasOne("recipeApp.Models.DayPlan", "Sunday")
-                        .WithMany()
-                        .HasForeignKey("SundayDayPlanId");
-
-                    b.HasOne("recipeApp.Models.DayPlan", "Thursday")
-                        .WithMany()
-                        .HasForeignKey("ThursdayDayPlanId");
-
-                    b.HasOne("recipeApp.Models.DayPlan", "Tuesday")
-                        .WithMany()
-                        .HasForeignKey("TuesdayDayPlanId");
-
-                    b.HasOne("recipeApp.Models.DayPlan", "Wednesday")
-                        .WithMany()
-                        .HasForeignKey("WednesdayDayPlanId");
-
-                    b.Navigation("Friday");
-
-                    b.Navigation("Monday");
-
-                    b.Navigation("Saturday");
-
-                    b.Navigation("Sunday");
-
-                    b.Navigation("Thursday");
-
-                    b.Navigation("Tuesday");
-
-                    b.Navigation("Wednesday");
-                });
-
-            modelBuilder.Entity("recipeApp.Models.DayPlan", b =>
-                {
-                    b.Navigation("Recipe");
                 });
 #pragma warning restore 612, 618
         }

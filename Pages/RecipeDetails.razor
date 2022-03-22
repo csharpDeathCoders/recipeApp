@@ -1,12 +1,86 @@
-@page "/recipedetails"
+@page "/recipedetails/{id}"
 
 <PageTitle>Recipe Details Page</PageTitle>
 
-@using recipeApp.Data
+@using RecipeApp.Data
 
-<h1>Recipe Details Page</h1>
+<h1>Recipe Details for </h1>
 
+<p>Recipe Name: </p>
+<p></p>
+<br>
+
+<p>Short Description: </p>
+<p></p>
+<br>
+
+<p>List of Ingredients: </p>
+<ul>
+<li></li>
+</ul>
+<br>
+
+<p>Steps: </p>
+<ul>
+<li></li>
+</ul>
+<br>
+
+<img source="" alt="pic of food">
+
+<button>Add to meal plan +</button>
 
 @code {
-  
+  @* DotEnv.Load(); *@
+      <!-- List<Recipe> Recipes = new List<Recipe>();
+      protected override async Task OnInitializedAsync() -->
+    <!-- {
+        await RefreshRecipes();
+    }
+
+    private async Task RefreshRecipes()
+    {
+        Recipes = await service.GetRecipeAsync();
+    }
+
+    public Recipe NewRecipe { get; set; } = new Recipe();
+    private async Task AddNewRecipe()
+    {
+        await service.AddRecipeAsync(NewRecipe);
+        NewRecipe = new Recipe();
+        await RefreshRecipes();
+    }
+
+    Recipe UpdateRecipe = new Recipe();
+    private void SetRecipeForUpdate(Recipe Recipe)
+    {
+        UpdateRecipe = Recipe;
+    }
+
+    private async Task UpdateRecipeData()
+    {
+        await service.UpdateRecipeAsync(UpdateRecipe);
+        await RefreshRecipes();
+    }
+
+    private async Task DeleteRecipe(Recipe Recipe)
+    {
+        await service.DeleteRecipeAsync(Recipe);
+        await RefreshRecipes();
+    }  -->
+Recipe? recipe;
+
+    [Parameter]
+    public string? Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await load();
+    }
+      protected async Task load() {
+        string URL = $"{GlobalVariable.BaseUrl}665734/information?apiKey=2d565ece4cab48459669cb81a708e639&includeNutrition=true";
+        recipe = await httpClient.GetFromJsonAsync<Recipe>(URL);
+                Console.WriteLine(recipe?.ToString());
+
+      }
 }
