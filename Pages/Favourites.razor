@@ -1,11 +1,17 @@
 @page "/favourites"
+@using RecipeApp.Components
+
 
 <PageTitle>Favourites Page</PageTitle>
 
 @using RecipeApp.Data
 
 <h1>Favourites Page</h1>
-<p>Your facourite recipes</p>
+<p>Your favourite recipes</p>
+
+<div class="d-flex justify-content-around">
+  <RecipeCard></RecipeCard>
+</div>
 
 
 @code {

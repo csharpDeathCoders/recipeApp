@@ -1,13 +1,18 @@
 @page "/results/:ingredient"
+@using RecipeApp.Components
+@using RecipeApp.Data
 
 <PageTitle>Result Page</PageTitle>
 
-@using RecipeApp.Data
-
 <h1>Results Page</h1>
 
-<p>Here are some randome recipes with your ingredient</p>
+<p>Here are some randome recipes with your ingredients</p>
 
+<div class="d-flex justify-content-around">
+  <RecipeCard></RecipeCard>
+  <RecipeCard></RecipeCard>
+  <RecipeCard></RecipeCard>
+</div>
 
 
 @code {
