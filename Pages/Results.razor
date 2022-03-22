@@ -11,12 +11,12 @@
 
 
 @code {
-    Recipe[]? recipes;
+    RecipeList[]? recipeList;
 
       protected async Task load()
     {
         
-        recipes = await httpClient.GetFromJsonAsync<Recipe[]>($"{GlobalVariable.BaseUrl}findByIngredients?apiKey=2d565ece4cab48459669cb81a708e639&ingredients=chicken");
+        recipeList = await httpClient.GetFromJsonAsync<RecipeList[]>($"{GlobalVariable.BaseUrl}findByIngredients?apiKey=2d565ece4cab48459669cb81a708e639&ingredients=chicken");
 
     }
 }
