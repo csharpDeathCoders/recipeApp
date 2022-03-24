@@ -16,12 +16,13 @@
 
 
 @code {
-    RecipeList[]? recipeList;
+  RecipeList[]? recipeList;
 
-      protected async Task load()
-    {
-        
-        recipeList = await httpClient.GetFromJsonAsync<RecipeList[]>($"{GlobalVariable.BaseUrl}findByIngredients?apiKey=2d565ece4cab48459669cb81a708e639&ingredients=chicken");
+  protected async Task load()
+  {
 
-    }
+    recipeList = await
+    httpClient.GetFromJsonAsync<RecipeList[]>($"{GlobalVariable.BaseUrl}findByIngredients?apiKey=2d565ece4cab48459669cb81a708e639&ingredients=chicken");
+
+  }
 }

@@ -6,7 +6,7 @@ using RecipeApp.Models;
 namespace RecipeApp.Data
 {
 
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<WeekPlan>? WeekPlans { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

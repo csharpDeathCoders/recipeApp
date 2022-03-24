@@ -7,79 +7,82 @@
 @if (recipe == null)
 {
     <h1>WAITING</h1>
-} else {
+}
+else
+{
 
-<h1>Recipe Details for @recipe.title</h1>
+    <h1>Recipe Details for @recipe.title</h1>
 
-<p>Ready in @recipe.readyInMinutes</p>
-<br>
+    <p>Ready in @recipe.readyInMinutes</p>
+    <br>
 
-<p>Short Description: @recipe.summary </p>
-<p></p>
-<br>
+    <p>Short Description: @recipe.summary </p>
+    <p></p>
+    <br>
 
-<p>List of Ingredients: </p>
-<ul>
-           @foreach (var item in recipe.extendedIngredients) {
+    <p>List of Ingredients: </p>
+    <ul>
+    @foreach (var item in recipe.extendedIngredients)
+        {
 
-    <li>@item.name
-        <p>
-            @item.amount @item.unit
-        </p>
-    </li>
-    }
-</ul>
-<br>
+            <li>@item.name
+                <p>
+                    @item.amount @item.unit
+                </p>
+            </li>
+        }
+    </ul>
+    <br>
 
-<p>Steps: @recipe.instructions </p>
+    <p>Steps: @recipe.instructions </p>
 
-<br>
+    <br>
 
-<img src="@recipe.image" alt="pic of food">
+    <img src="@recipe.image" alt="pic of food">
 
-<button>Add to meal plan +</button>
+    <button>Add to meal plan +</button>
 }
 @code {
-  @* DotEnv.Load(); *@
-      <!-- List<Recipe> Recipes = new List<Recipe>();
-      protected override async Task OnInitializedAsync() -->
+    @* DotEnv.Load(); *@
+    <!-- List<Recipe> Recipes = new List<Recipe>();
+    protected override async Task OnInitializedAsync() -->
     <!-- {
-        await RefreshRecipes();
+    await RefreshRecipes();
     }
 
     private async Task RefreshRecipes()
     {
-        Recipes = await service.GetRecipeAsync();
+    Recipes = await service.GetRecipeAsync();
     }
 
     public Recipe NewRecipe { get; set; } = new Recipe();
     private async Task AddNewRecipe()
     {
-        await service.AddRecipeAsync(NewRecipe);
-        NewRecipe = new Recipe();
-        await RefreshRecipes();
+    await service.AddRecipeAsync(NewRecipe);
+    NewRecipe = new Recipe();
+    await RefreshRecipes();
     }
 
     Recipe UpdateRecipe = new Recipe();
     private void SetRecipeForUpdate(Recipe Recipe)
     {
-        UpdateRecipe = Recipe;
+    UpdateRecipe = Recipe;
     }
 
     private async Task UpdateRecipeData()
     {
-        await service.UpdateRecipeAsync(UpdateRecipe);
-        await RefreshRecipes();
+    await service.UpdateRecipeAsync(UpdateRecipe);
+    await RefreshRecipes();
     }
 
     private async Task DeleteRecipe(Recipe Recipe)
     {
-        await service.DeleteRecipeAsync(Recipe);
-        await RefreshRecipes();
+    await service.DeleteRecipeAsync(Recipe);
+    await RefreshRecipes();
     }  -->
 
 
-Recipe? recipe;
+    Recipe? recipe;
 
     [Parameter]
     public string? Id { get; set; }

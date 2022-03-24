@@ -21,5 +21,5 @@ namespace RecipeApp.Models
         public string creditsText { get; set; }
         public string summary { get; set; }
         public List<Ingredient> extendedIngredients { get; set; }
-  }
+    }
 }
